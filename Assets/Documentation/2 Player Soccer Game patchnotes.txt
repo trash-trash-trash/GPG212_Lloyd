@@ -1,0 +1,45 @@
+1.1
+
+-- Increased scale of everything. Changed the Field size to reflect a real Soccer field proportions (125 x 850)
+
+-- Added Spectator NPC's. Spectators have a chance to spawn as either Red, Blue or Purple, with about 80% chance to spawn as a Team Fan or else they are a "fairweather fan". Team Fans cheer for their respective colours whereas Purples cheer for both.
+
+1.2
+
+-- Added NPC_Umpire. The Umpire stands on the sidelines and follows the Ball's position along the X axis. Calculates the Ball's position and follows it (uses old code)
+
+-- Added SoccerEventManager.cs and Events for Players Scoring or getting an Own Goal
+
+-- Added SoccerSFX.cs. Added "crowdBoo" and "crowdCheer". the SFX is called by the Events. (NPC_Spectator adds to volume? ie the more there is the louder the corresponding response)
+
+-- NPC_Spectators now "leap for joy" when a Player Scores. Added a "Titter" CoRoutine as an idle animation. Fairweather fans also have a chance to commit to a team upon a score. (However the solution uses PlayerPrefs and is EXTREMELY hacky; must find out how to parse Events with parameters)
+
+1.3
+
+-- Added SoccerUI.cs. Refactored SoccerGameManager (moved all UI references to SoccerUI and added logic so SoccerUI reads GameManager)
+
+1.4
+
+-- consolidated Player Movement into a single script
+
+-- changed movement to use RigidBody AddForce
+
+1.5
+
+-- tied Player and Ball movement to Events
+
+-- added canPlay bool to the Ball in order to freeze it upon round start (was maintaining momentum between goals, screwing with play)
+
+-- added invisible walls to keep ball and Players in play
+
+-- gave ball directional thrust so that players may "kick" it
+
+-- added an invisible walls to the outside of the field, the middle of the field, and the goalposts
+
+-- general bugfixing
+
+-- TO DO: events taking parameter(s), events giving parameter(s)
+
+1.6
+
+-- added "rounds" so that each Player takes turns starting with the ball (like a real soccer match)
