@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class SoccerGameManager : MonoBehaviour
 {
+    
+    
     public bool debug;
     
     //controls when the Players can and can't move

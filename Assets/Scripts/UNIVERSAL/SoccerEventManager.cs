@@ -10,7 +10,6 @@ public enum myTeam
     Blue
 };
 
-
 public class SoccerEventManager : MonoBehaviour
 {
     private myTeam currentTeam;

@@ -21,8 +21,6 @@ public class SoccerGameSFX : MonoBehaviour
         SoccerEventManager.OwnGoalEvent += PlayBoo;
         SoccerEventManager.P1ScoredEvent += PlayCheer;
         SoccerEventManager.P2ScoredEvent += PlayCheer;
-
-        SoccerEventManager.ScoredEvent(myTeam.Blue) += PlayCheer();
     }
 
     void OnDisable()
