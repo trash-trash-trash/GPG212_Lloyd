@@ -43,3 +43,11 @@
 1.6
 
 -- added "rounds" so that each Player takes turns starting with the ball (like a real soccer match)
+
+1.7 
+
+-- updated Events using Cam's code
+
+-- gave Umpires variable moveSpeed so they feel more natural 
+
+-- the invisible walls now bounce the ball back with addForce so Players don't have to chase the ball as much

@@ -9,7 +9,7 @@ public class NPC_Umpire : MonoBehaviour
     //
     private Rigidbody rb;
     private Vector3 movement;
-    private float moveSpeed=250f;
+    private float moveSpeed;
     private Renderer rend;
     
     //declares Ball object to follow
@@ -27,6 +27,8 @@ public class NPC_Umpire : MonoBehaviour
 
     private void Update()
     {
+        moveSpeed = Random.Range(220f, 275f);
+        
         if (ballObj != null)
         {
             //move towards 

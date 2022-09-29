@@ -28,10 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 Down = new Vector3(0, 0, -100);
     private Vector3 Left = new Vector3(-100, 0, 0);
     private Vector3 Right = new Vector3(100, 0, 0);
-    private Vector3 UpRight = new Vector3(50, 0, 50);
-    private Vector3 DownRight = new Vector3(50, 0, -50);
-    private Vector3 UpLeft = new Vector3(-50, 0, 50);
-    private Vector3 DownLeft = new Vector3(-50, 0, -50);
+    private Vector3 UpRight = new Vector3(75, 0, 75);
+    private Vector3 DownRight = new Vector3(75, 0, -75);
+    private Vector3 UpLeft = new Vector3(-75, 0, 75);
+    private Vector3 DownLeft = new Vector3(-75, 0, -75);
     private Vector3 moveDir;
 
     private Vector3 currentSpeed;

@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 public class SoccerGameManager : MonoBehaviour
 {
-    
-    
     public bool debug;
     
     //controls when the Players can and can't move
@@ -42,10 +40,11 @@ public class SoccerGameManager : MonoBehaviour
     public Vector3 P1ballStartPos;
     public Vector3 P2ballStartPos;
     Vector3 ballStartPos;
+    private BallScript ballScript;
 
     private int roundInt;
-    
-    
+
+    private Team ballTeam;
 
     //Countdown 
     //text
@@ -67,6 +66,7 @@ public class SoccerGameManager : MonoBehaviour
         pm = P1Obj.GetComponent<PlayerMovement>(); 
 
         ballObj = GameObject.FindGameObjectWithTag("Ball");
+        ballScript = ballObj.GetComponent<BallScript>();
 
         time = 0;
         P1Score = 0;
@@ -75,7 +75,10 @@ public class SoccerGameManager : MonoBehaviour
         roundInt = (Random.Range(1, 2));
 
         StartCoroutine(Countdown());
-        
+    }
+
+    public void Update()
+    {
         
     }
 
@@ -191,10 +194,6 @@ public class SoccerGameManager : MonoBehaviour
     {
         return time;
     }
-    
-    
-    //
-    private Collider scoreBox;
-    
-    
+
+
 }

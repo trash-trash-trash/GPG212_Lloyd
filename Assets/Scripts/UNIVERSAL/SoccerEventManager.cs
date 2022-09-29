@@ -4,29 +4,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum myTeam
+[Serializable]
+public class Team
 {
-    Red,
-    Blue
-};
+    public string name;
+    public Goal goal;
+    public int teamInt;
+    public int score;
+}
 
 public class SoccerEventManager : MonoBehaviour
 {
-    private myTeam currentTeam;
-    
-    void Update()
-    {
-        if (Input.GetKeyUp("1"))
+        public Team[] teams;
+
+        public GameObject ballObj;
+        private BallScript ballScript;
+  
+        private void Start()
         {
-            P1ScoredFunction();
+            ballScript = ballObj.GetComponent<BallScript>();
+            
+            // Subscribe to ALL goals
+            for (var index = 0; index < teams.Length; index++)
+            {
+                var item = teams[index];
+                item.goal.GoalEvent += GotGoalEvent;
+            }
         }
-        if (Input.GetKeyUp("2"))
+        private void GotGoalEvent(Goal newGoal)
         {
-            P2ScoredFunction();
+            // Find the team entry when a goal happens
+            foreach (Team team in teams)
+            {
+                if (team.goal == newGoal)
+                {
+                    team.score++;
+                    Debug.Log("Got goal! "+team.name + " : Score = "+team.score);
+                }
+            }
         }
-    }
-    
-    //event for when Players can Play the game
+
+        private void Update()
+        {
+            ballScript.BallTeam();
+        }
+
+
+        //event for when Players can Play the game
 
     public delegate void PlayTime();
 
@@ -37,19 +61,6 @@ public class SoccerEventManager : MonoBehaviour
         PlayTimeEvent?.Invoke();
     }
 
-    //event for scoring
-    public delegate void Scored(myTeam currentTeam);
-
-    public static event Scored ScoredEvent;
-
-    public static void ScoredFunction()
-    {
-        if (ScoredEvent != null)
-        {
-
-        }
-    }
-    
     //event for P1 scoring
     public delegate void P1Scored();
 

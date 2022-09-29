@@ -22,7 +22,9 @@ public class BallScript : MonoBehaviour
         Blue
     };
 
-    private myTeam current;
+    private myTeam currentTeam;
+    int currentTeamInt;
+    
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
@@ -30,7 +32,8 @@ public class BallScript : MonoBehaviour
 
         rb = this.GetComponent<Rigidbody>();
 
-        current = myTeam.Neutral;
+        currentTeam = myTeam.Neutral;
+        currentTeamInt = (int)currentTeam;
     }
 
     void Update()
@@ -44,7 +47,7 @@ public class BallScript : MonoBehaviour
     {
         if(x.gameObject.tag=="P1Goal")
         { 
-            if (current == myTeam.Blue)
+            if (currentTeam == myTeam.Blue)
                      {
                          SoccerEventManager.OwnGoalFunction();
                      }
@@ -53,7 +56,7 @@ public class BallScript : MonoBehaviour
         }
         if(x.gameObject.tag=="P2Goal")
         {
-            if (current == myTeam.Red)
+            if (currentTeam == myTeam.Red)
                      {
                          SoccerEventManager.OwnGoalFunction();
                      }
@@ -64,14 +67,16 @@ public class BallScript : MonoBehaviour
         if (x.gameObject.tag == "P1")
         {
             rb.AddRelativeForce(Vector3.up * thrust);
-            current = myTeam.Red;
+            currentTeam = myTeam.Red;
         }
 
         if (x.gameObject.tag == "P2")
         {
             rb.AddForce(Vector3.up * thrust);
-            current = myTeam.Blue;
+            currentTeam = myTeam.Blue;
         }
+        
+       
     }
 
     private void OnCollisionEnter(Collision x)
@@ -89,6 +94,12 @@ public class BallScript : MonoBehaviour
             rb.AddForce(dir * thrust);
         }
         
+         if (x.gameObject.tag == "InvisibleWall")
+                {
+                    Vector3 dir = x.contacts[0].point - transform.position;
+                    dir = -dir.normalized;
+                    rb.AddForce(dir * thrust);
+                }
     }
 
     void OnEnable()
@@ -100,5 +111,10 @@ public class BallScript : MonoBehaviour
     public void SwitchPlay()
     {
         canPlay = !canPlay;
+    }
+
+    public int BallTeam()
+    {
+        return currentTeamInt;
     }
 }
